@@ -12,10 +12,12 @@ function singleRound (playerSelection, computerSelection) {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     if (playerSelection == computerSelection) {
         return `Tie! You both got ${playerSelection}!`;
-    } else if ((playerSelection == 'Rock' && computerSelection == 'Scissors') || (playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Scissors')) {
+    } else if ((playerSelection == 'Rock' && computerSelection == 'Scissors') || (playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock')) {
         return `You win! ${playerSelection} beats ${computerSelection}!`;
-    } else {
+    } else if ((playerSelection == 'Scissors' && computerSelection == 'Rock') || (playerSelection == 'Paper' && computerSelection == 'Scissors') || (playerSelection == 'Rock' && computerSelection == 'Paper')) {
         return `You lose! ${computerSelection} beats ${playerSelection}!`;
+    } else {
+        return `${playerSelection} is a wrong input! Make a new one!`;
     }
 }
 singleRound('paper', getComputerChoice());

@@ -11,11 +11,14 @@ function getComputerChoice () {
 function singleRound (playerSelection, computerSelection) {
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     if (playerSelection == computerSelection) {
-        console.log(`Tie! You both got ${playerSelection}!`)
+        return `Tie! You both got ${playerSelection}!`;
     } else if ((playerSelection == 'Rock' && computerSelection == 'Scissors') || (playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Scissors')) {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        return `You win! ${playerSelection} beats ${computerSelection}!`;
     } else {
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
+        return `You lose! ${computerSelection} beats ${playerSelection}!`;
     }
 }
 singleRound('paper', getComputerChoice());
+const playerSelection = 'paper';
+const computerSelection = getComputerChoice();
+console.log(singleRound(playerSelection, computerSelection));

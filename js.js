@@ -23,6 +23,7 @@ let playerScore = 0;
 let computerScore = 0;
 let roundCount = 1;
 const output = document.querySelector('.output');
+const body = document.querySelector('body');
 function displayResult (result, playerSelection, computerSelection) {
     const para = document.createElement('p');
     switch (result) {
@@ -51,9 +52,16 @@ function displayResult (result, playerSelection, computerSelection) {
         playerScore = 0;
         computerScore = 0;
         output.appendChild(h2);
-        const h3 = document.createElement('h3');
-        h3.textContent = 'Play one more time!';
-        output.appendChild(h3);
+        const againbtn = document.createElement('button');
+        againbtn.textContent = 'Play one more time!';
+        againbtn.addEventListener('click', () => {
+            let delChild = output.firstChild;
+            while (delChild) {
+                output.removeChild(delChild);
+                delChild = output.firstChild;
+            }
+        });
+        output.appendChild(againbtn);
     }
 }
 const rockbtn = document.querySelector('.rock');

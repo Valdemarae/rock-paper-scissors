@@ -9,17 +9,35 @@ function getComputerChoice () {
     }
 }
 function playRound (playerSelection, computerSelection) {
+    let result = "";
     if (playerSelection == computerSelection) {
-        return `tie`;
+        result = `tie`;
     } else if ((playerSelection == 'Rock' && computerSelection == 'Scissors') || (playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock')) {
-        return `won`;
+        result = `won`;
     } else {
-        return `lost`;
+        result = `lost`;
     }
+    return displayResult(result, playerSelection, computerSelection);
+}
+const output = document.querySelector('.output');
+function displayResult (result, playerSelection, computerSelection) {
+    const para = document.createElement('p');
+    switch (result) {
+        case 'tie':
+            para.textContent = `Tie! You both got ${playerSelection}!`;
+            break;
+        case 'won':
+            para.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
+            break;
+        case 'lost':
+            para.textContent = `You lose! ${computerSelection} beats ${playerSelection}!`;
+            break;
+    }
+    output.appendChild(para);
 }
 const rockbtn = document.querySelector('.rock');
-rockbtn.addEventListener('click', () => console.log(playRound('Rock', getComputerChoice())));
+rockbtn.addEventListener('click', () => playRound('Rock', getComputerChoice()));
 const paperbtn = document.querySelector('.paper');
-paperbtn.addEventListener('click', () => console.log(playRound('Paper', getComputerChoice())));
+paperbtn.addEventListener('click', () => playRound('Paper', getComputerChoice()));
 const scissorsbtn = document.querySelector('.scissors');
-scissorsbtn.addEventListener('click', () => console.log(playRound('Scissors', getComputerChoice())));
+scissorsbtn.addEventListener('click', () => playRound('Scissors', getComputerChoice()));

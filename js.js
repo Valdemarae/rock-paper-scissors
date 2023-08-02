@@ -19,21 +19,42 @@ function playRound (playerSelection, computerSelection) {
     }
     return displayResult(result, playerSelection, computerSelection);
 }
+let playerScore = 0;
+let computerScore = 0;
+let roundCount = 1;
 const output = document.querySelector('.output');
 function displayResult (result, playerSelection, computerSelection) {
     const para = document.createElement('p');
     switch (result) {
         case 'tie':
-            para.textContent = `Tie! You both got ${playerSelection}!`;
+            para.textContent = `Round ${roundCount} - Tie! You both got ${playerSelection}!`;
             break;
         case 'won':
-            para.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
+            playerScore++;
+            para.textContent = `Round ${roundCount} - You win! ${playerSelection} beats ${computerSelection}!`;
             break;
         case 'lost':
-            para.textContent = `You lose! ${computerSelection} beats ${playerSelection}!`;
+            computerScore++;
+            para.textContent = `Round ${roundCount} - You lose! ${computerSelection} beats ${playerSelection}!`;
             break;
     }
+    roundCount++;
     output.appendChild(para);
+    if (playerScore == 5 || computerScore == 5) {
+        const h2 = document.createElement('h2');
+        if (playerScore == 5) {
+            h2.textContent = `You won the game with score ${playerScore} : ${computerScore}! Congratulations!`;
+        } else {
+            h2.textContent = `You lost the game with score ${playerScore} : ${computerScore}!`;
+        }
+        roundCount = 1;
+        playerScore = 0;
+        computerScore = 0;
+        output.appendChild(h2);
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Play one more time!';
+        output.appendChild(h3);
+    }
 }
 const rockbtn = document.querySelector('.rock');
 rockbtn.addEventListener('click', () => playRound('Rock', getComputerChoice()));

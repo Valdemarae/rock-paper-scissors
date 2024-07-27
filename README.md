@@ -1,3 +1,5 @@
 # rock-paper-scissors
 
-First project built using JavaScript. Playable in console.
+First project built using JavaScript.
+
+https://valdemarae.github.io/rock-paper-scissors/
